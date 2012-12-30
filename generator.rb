@@ -112,7 +112,7 @@ end
 
 def PrintUsage()
 	puts
-	puts "Usage: #{$0} [--help|-h] [--separator|-s=<separator>] field_string count"
+	puts "Usage: #{$0} [--help|-h] [--separator|-s=<separator>] [--insert|-i=<table>] field_string count"
 	puts
 	puts "      field_string consists of comma-separated values of:"
 	puts "            counter=START"
@@ -130,7 +130,8 @@ def PrintUsage()
 	puts "            phone"
 	puts "            major"
 	puts
-	puts "      --separator ....... separator for output fields, default = ,"
+	puts "      --separator .......... separator for output fields, default = ,"
+	puts "      --insert=<TABLE> ..... create SQL INSERT statements, one per line"
 	puts
 	puts "Example: #{$0} first_name,city,major 10"
 	puts
@@ -138,12 +139,16 @@ def PrintUsage()
 end
 
 separator = ','
+insert = ''
 
 if ARGV.count > 0
 	if ARGV[0] == '-h' or ARGV[0] == '--help' 
 			PrintUsage()
 		elsif ARGV[0] =~ /-s=/ or ARGV[0] =~ /--separator=/
 			separator = ARGV[0].split('=')[1]
+			ARGV.shift
+		elsif ARGV[0] =~ /-i=/ or ARGV[0] =~ /--insert=/
+			insert = ARGV[0].split('=')[1]
 			ARGV.shift
 		end
 
@@ -186,7 +191,11 @@ if ARGV.count > 0
 
 			output_fields << person.data[field]
 		end
-		puts output_fields.join(separator)
+		if insert == ''
+			puts output_fields.join(separator)
+		else
+			puts "INSERT INTO #{insert} VALUES ('" + output_fields.join("','") + "');"
+		end
 		counter += 1
 	end
 else 
