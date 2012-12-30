@@ -1,5 +1,3 @@
-#!/Users/mgrossmann/.rvm/rubies/ruby-1.9.3-p194/bin/ruby
-
 class List
 	attr_reader :elements
 
