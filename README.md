@@ -6,7 +6,7 @@ very simple tool to generate random data for testing
 ### Usage
 
 ~~~
-Usage: ./generator.rb [--help|-h] [--separator|-s=<separator>] field_string count
+Usage: ./generator.rb [--help|-h] [--separator|-s=<separator>] [--insert|-i=<table>] field_string count
 
       field_string consists of comma-separated values of:
             counter=START
@@ -24,7 +24,8 @@ Usage: ./generator.rb [--help|-h] [--separator|-s=<separator>] field_string coun
             phone
             major
 
-      --separator ....... separator for output fields, default = ,
+      --separator .......... separator for output fields, default = ,
+      --insert=<TABLE> ..... create SQL INSERT statements, one per line
 
 Example: ./generator.rb first_name,city,major 10
 ~~~

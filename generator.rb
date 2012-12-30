@@ -194,7 +194,7 @@ if ARGV.count > 0
 		if insert == ''
 			puts output_fields.join(separator)
 		else
-			puts "INSERT INTO #{insert} VALUES ('" + output_fields.join("','") + "');"
+			puts "INSERT INTO \"#{insert}\" VALUES (\"" + output_fields.join('","') + "\");"
 		end
 		counter += 1
 	end
