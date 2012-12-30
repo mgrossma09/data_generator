@@ -49,3 +49,10 @@ Example: ./generator.rb first_name,city,major 10
 
 - the generated data is random, zip codes, area codes and phone numbers don't necessarily match with location
 - syntax for randint, randfloat, ... is ugly, will improve that soon
+
+### Special fieldnames
+
+- counter=START .................. add an autoincrement field, starting with START, useful to generate ID columns
+- randint=RANGE=PLUS ............. add a random integer with max=RANGE and add the value of PLUS
+- randfloat=RANGE=PRECISION ...... add random float with max=RANGE and round to PRECISION decimals
+- bool=STRING1=STRING2 ........... add randomly either STRING1 or STRING2 (good for generating yes/no, true/falso, 0/1, ...)
